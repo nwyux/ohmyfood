@@ -107,6 +107,7 @@ header nav {
 /********* Tuto **********/
 
 .tuto{
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -134,6 +135,7 @@ header nav {
   gap: 1rem;
   padding: 1rem;
   border-radius: 20px;
+  max-width: 300px;
   box-shadow: 0px 4px 10px 0px #00000040;
   transition: all 0.3s;
 }
@@ -165,7 +167,7 @@ header nav {
 }
 
 .tuto-step i{
-  margin-left: 1.5em;
+  margin-left: 1em;
   color: #7E7E7E;
   transition: all 0.3s;
 }
@@ -230,8 +232,17 @@ footer {
 /* Large devices (desktops, less than 1200px) */
 @media (min-width: 992px) {
   .tuto{
-    max-width: 50%;
     margin: 0 auto;
+  }
+
+  .tuto-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tuto h2{
+    display: flex;
+    justify-content: start;
   }
   .tuto-steps {
     justify-content: center;
@@ -259,8 +270,10 @@ footer {
 }
 
 /* Small devices (phones, less than 768px) */
-@media (max-width: 767.98px) {
-  .footer-container {
+@media (min-width: 767.98px) {
+  .tuto-content {
+    margin: 0 auto;
+    justify-content: center;
     flex-direction: column;
     gap: 2rem;
   }
