@@ -476,7 +476,7 @@ nav .back {
   justify-content: space-between;
   width: 100%;
   font-size: 0.8rem;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .plate-desc p {
@@ -490,7 +490,7 @@ nav .back {
 
 .plate-desc .price {
   font-weight: bold;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   white-space: nowrap;
   margin-left: 10px;
 }
@@ -506,7 +506,7 @@ nav .back {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: right 0.3s ease-in-out;
+  transition: right 0.2s ease-in-out;
 }
 
 .plate:hover .plate-validate {
