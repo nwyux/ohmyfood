@@ -12,6 +12,58 @@
   --light-purple: #9356DC;
   --light-gray: #353535;
   --lighter-gray: #EAEAEA;
+  scroll-behavior: smooth;
+}
+
+.loader {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(61, 61, 61, 0.199);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  animation: fadeOut 0.5s ease-out 1.5s forwards;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-layer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #353535;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes enableScroll {
+  0% { overflow: hidden; }
+  100% { overflow: auto; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; visibility: visible; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0; visibility: hidden; }
 }
 
 body {
@@ -20,12 +72,26 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  animation: enableScroll 0s linear 1.5s forwards;
 }
 
 .main-container {
   width: 100%;
   box-sizing: border-box;
   background-color: #F6F6F6;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out 0.75s forwards;
+}
+
+.main-container-unique {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 a {
@@ -68,6 +134,14 @@ header nav {
   width: 100%;
 }
 
+nav .back {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  color: var(--light-gray);
+  font-size: 1.5rem;
+}
+
 /****** Location ******/
 .location {
   display: flex;
@@ -86,6 +160,7 @@ header nav {
 /****** Hero ***********/
 
 .hero-content {
+  background-color: #F6F6F6;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +187,6 @@ header nav {
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  cursor: pointer;
 }
 
 .tuto h2{
@@ -129,7 +203,7 @@ header nav {
 
 .tuto-step {
   position: relative;
-  background-color: var(--lighter-gray);
+  background-color: #F6F6F6;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -138,6 +212,7 @@ header nav {
   max-width: 300px;
   box-shadow: 0px 4px 10px 0px #00000040;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .tuto-step span {
@@ -176,6 +251,275 @@ header nav {
   font-size: 0.9rem;
   color: black;
   font-weight: bold;
+}
+
+/********* Restaurants **********/
+
+.restaurants {
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F6F6;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.restaurant-cards{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1.5em;
+}
+
+.restaurant-card{
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.restaurant-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 5px 15px 0px #00000040;
+}
+
+.restaurant-card img{
+  /* image contain */
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  height: 200px;
+}
+
+.restaurant-card-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+}
+
+.restaurant-card-content-heart{
+  padding-right: 1rem;
+}
+
+.heart-container {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.heart-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.heart-container i {
+  background: -webkit-linear-gradient(193.33deg, #9356DC -11.44%, #FF79DA 123.93%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 2.5px;
+  left: 0;
+}
+
+.heart-container::before {
+  content: "\f004";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 400;
+  top: 0;
+  left: 0;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.heart-checkbox:checked + i {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes fill-heart {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/********* Restaurant Unique **********/
+
+.restaurant-menu-container{
+  position: relative;
+  margin-bottom: 73.1rem;
+  background-color: white;
+}
+
+.restaurant-menu-container2{
+  position: relative;
+  margin-bottom: 78.8rem;
+  background-color: white;
+}
+
+.restaurant-menu{
+  position: absolute;
+  top: -2em;
+  left: 0;
+  right: 0;
+  border-radius: 20px 20px 20px 20px;
+  background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 20px 20px 0 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.restaurant-menu-header{
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  background-color: #F6F6F6;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.name{
+  text-transform: uppercase;
+}
+
+.name::after{
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 42px;
+  height: 2px;
+  background-color: #99E2D0;
+}
+
+.restaurant-menu-header h2{
+  font-family: "Shrikhand";
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 400;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.restaurant-image img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.plates{
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.commander{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.plate {
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 10px 0px #00000040;
+  position: relative;
+  overflow: hidden;
+}
+
+.plates-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.plate-text {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.plate-text h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.plate-desc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.plate-desc p {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  max-width: calc(100% - 80px);
+}
+
+.plate-desc .price {
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.plate-validate {
+  position: absolute;
+  right: -60px;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  background-color: #99E2D0;
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.3s ease-in-out;
+}
+
+.plate:hover .plate-validate {
+  right: 0;
+}
+
+.plate:hover .plate-desc .price {
+  transform: translateX(-50px);
+}
+
+.plate-validate i {
+  color: white;
+  font-size: 2em;
 }
 
 /******** Footer **********/
@@ -236,7 +580,8 @@ footer {
   }
 
   .tuto-content {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
@@ -248,6 +593,38 @@ footer {
     justify-content: center;
     flex-direction: row;
     gap: 2rem;
+    max-width: 1000px;
+  }
+
+  .tuto-step {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .restaurants {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .restaurants h2 {
+    width: 100%;
+  }
+
+  .restaurant-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .restaurant-card {
+    width: calc(50% - 1rem);
+    max-width: 500px;
+    min-width: 300px;
   }
   
   .footer-container {
@@ -269,7 +646,7 @@ footer {
   }
 }
 
-/* Small devices (phones, less than 768px) */
+/* Medium devices (tablets, less than 992px) */
 @media (min-width: 767.98px) {
   .tuto-content {
     margin: 0 auto;
