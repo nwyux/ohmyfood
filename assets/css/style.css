@@ -116,18 +116,18 @@ a {
 
 /****** Header ***********/
 
-header {
+.header {
   background-color: white;
   padding: 1.5rem;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-header nav img {
+.header nav img {
   height: 2rem;
 }
 
-header nav {
+.header nav {
   display: flex;
   justify-content: center;
   align-items: center;
